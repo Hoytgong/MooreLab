@@ -14,3 +14,11 @@ Dataset used: 29 SNPs of breast cancer cases & controls (2504 participants)
 	   - Exported pipeline as 'bcdata_pipeline.py'
 
 2. In PythonBreastCancer
+   - A) Take the exported pipeline and train it again on the test_validate_data 
+     - 1) Call predict method of exported_pipeline on testing_features to get predicted phenotypes that we compare to testing_target
+       - That error sums to 1
+   - B) Probability machine approach with predict_proba method
+     - 1) Take array of probability that each participant has phenotype 1
+       - Visualize density plot of test_validate_data features' probabilities
+       - Visualize density plot of pm_features 
+   - C) Change individual genotypes of the patient 
