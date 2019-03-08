@@ -37,15 +37,15 @@ group_labels = ['Healthy', 'Breast Cancer']
 colors = ['#3A4750', '#F64E8B']
 
 
-app.layout = html.Div(children=[
+app.layout = html.Div(id='test', children=[
     html.H1('VGMED'),
-    html.Div('Predictive Gene Editing Variant Dashboard'),
+    html.H6('Predictive Gene Editing Variant Dashboard'),
 
     html.Label('Subject ID input'),
     dcc.Input(id='subject-id', type='text', value='83811'),
     dcc.RadioItems(
         id='editing-choice',
-        options=[{'label': i, 'value': i} for i in ['Optimize','Individual Editing']]
+        options=[{'label': i, 'value': i} for i in ['Individual Editing', 'Optimize']]
     ),
     html.Button(id='submit-button', n_clicks=0, children='Submit'),
 
@@ -89,8 +89,10 @@ def return_optimized(clicks, sub_id, editing_choice):
                 options=[{'label': i, 'value': i} for i in list(df.columns.values)[1:-1]]
             ),
             html.Div(id='text'),
+
             html.Label('Edit SNP to...'),
             dcc.Dropdown(id='SNP-values'),
+
             html.Button(id='indiv-submit', n_clicks=0, children='Edit'),
             html.Div(id='hidden')
         ])
@@ -101,8 +103,10 @@ def return_optimized(clicks, sub_id, editing_choice):
     Output('text', 'children'),
     [Input('subject-id', 'value'), Input('SNP-dropdown', 'value')])
 def return_curr_SNP_value(sub_id, SNP):
-    value = df.loc[df.patient_id == int(sub_id), str(SNP)][0]
+    df = pd.read_csv('finalBCdata.csv')
+    value = df.loc[df.patient_id == int(sub_id), str(SNP)].values[0]
     return 'Your current SNP value is "{}"'.format(value)
+
 
 @app.callback(
     Output('SNP-values', 'options'),
@@ -111,7 +115,7 @@ def return_curr_SNP_value(sub_id, SNP):
 def return_editing_options(sub_id, SNP):
     df = pd.read_csv('finalBCdata.csv')
     list = [0, 1, 2]
-    value = df.loc[df.patient_id == int(sub_id), str(SNP)][0]
+    value = df.loc[df.patient_id == int(sub_id), str(SNP)].values[0]
     list.remove(value)
     return [{'label': i, 'value': i} for i in list]
 
