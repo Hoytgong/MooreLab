@@ -37,15 +37,15 @@ group_labels = ['Healthy', 'Breast Cancer']
 colors = ['#3A4750', '#F64E8B']
 
 
-app.layout = html.Div(children=[
+app.layout = html.Div(id='test', children=[
     html.H1('VGMED'),
-    html.Div('Predictive Gene Editing Variant Dashboard'),
+    html.H6('Predictive Gene Editing Variant Dashboard'),
 
     html.Label('Subject ID input'),
     dcc.Input(id='subject-id', type='text', value='83811'),
     dcc.RadioItems(
         id='editing-choice',
-        options=[{'label': i, 'value': i} for i in ['Optimize','Individual Editing']]
+        options=[{'label': i, 'value': i} for i in ['Individual Editing', 'Optimize']]
     ),
     html.Button(id='submit-button', n_clicks=0, children='Submit'),
 

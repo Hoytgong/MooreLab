@@ -1,7 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 
 
-h1, h2, h3, h4, h5, h6 {
+h1 {
     color: hotpink;
     font-family: 'Raleway', sans-serif;
+    text-align:center;
+    margin-top:-20px;
 }
+
+h6 {
+    font-family: 'Raleway', sans-serif;
+    text-align:center;
+    margin-top:-20px;
+}
+
+div #test {
+    padding:40px;
+    text-align:center;
+}
+
+div {
+    padding:5px;
+    text-align:center;
+}
+
