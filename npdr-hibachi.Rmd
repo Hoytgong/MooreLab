@@ -1,0 +1,26 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+# install.packages('devtools')
+devtools::install_github('insilico/npdr')
+library(npdr)
+
+```
+
+
+```{r}
+data_ex <- read_delim('data/hibachi-res_BernoulliNB_DecisionTreeClassifier-s31077_0.104.txt', delim = '\t')
+
+npdr('Class', data_ex[1:100,], regression.type = 'binomial', attr.diff.type = 'match-mismatch', verbose = T)
+
+```
+
+
+
+
+
